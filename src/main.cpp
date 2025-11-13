@@ -1,6 +1,7 @@
 #include <iostream>
 #include "films.h"
 #include "api_client.h"
+#include "genres.h"
 #include <vector>
 
 int main(){
@@ -11,6 +12,7 @@ int main(){
 
 
   std::vector<Film> filmes = client.getMovies(1);
+  std::vector<Genre> genres = client.getGenres();
 
   if (filmes.empty()){
     std:: cerr<< "deu erro dawg" << std::endl;
@@ -19,6 +21,9 @@ int main(){
 
   for(const Film& f: filmes) {
     f.print();
+  }
+  for(const Genre& g: genres){
+    g.print();
   }
   
 

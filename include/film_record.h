@@ -1,17 +1,21 @@
 #ifndef FILM_RECORD_H
 #define FILME_RECORD_H
 
-struct FilmRecord{
+class FilmRecord{
+  public:
 
-  bool active;
-  int id;
-  double popularity;
-  double rating;
+    bool active;
+    int id;
+    double popularity;
+    double rating;
 
-  char title[101];
-  char release_date[11];
+    char title[101];
+    char release_date[11];
 
-  long offset_overview;
+    long offset_overview;
+
+  private:
+    void writeMovies(movieList);
 };
 
 #endif

@@ -2,6 +2,7 @@
 #define FILM_H
 
 #include <string>
+#include <vector>
 
 class Film{
   public:
@@ -9,6 +10,7 @@ class Film{
     std::string title;
     std::string release_date;
     std::string overview;
+    std::vector<int> genres;
     double popularity;
     double rating;
 

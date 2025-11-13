@@ -1,6 +1,6 @@
 #include "api_client.h"
 #include "films.h"
-
+#include "genres.h"
 #include <cpr/cpr.h>
 #include <iostream>
 #include <string>
@@ -61,6 +61,9 @@ std::vector<Film> ApiClient::getMovies(int paginas){
         f.overview = item.value("overview","Sem sinopse disponível.");
         f.popularity = item.value("popularity",0.0);
         f.rating = item.value("vote_average",0.0);
+        for(const auto& genre : item["genre_ids"]){
+          f.genres.push_back(genre);
+        }
 
 
         films.push_back(f);
@@ -77,5 +80,33 @@ std::vector<Film> ApiClient::getMovies(int paginas){
   std::cout << "Coleta Finalizada. Total de " << films.size() << " filmes encontrados." << std::endl;
 
   return films;
+}
+
+
+std::vector<Genre> ApiClient::getGenres(){
+  std::vector<Genre> genres;
+  
+  cpr::Parameters params = {
+    {"api_key", m_api_key},
+    {"language","pt"}
+  }
+
+  cpr::Response res = cpr::Get(cpr::Url{m_base_url + "/genre/movie/list"},params);
+
+  try{
+
+    json data = json::parse(res.text);
+    for(const auto& genre : data["genres"]){
+      Genre g;
+      g.id = genre.value("id");
+      g.name = genre.value("name");
+      genres.push_back(g);
+    }
+  }catch(json::parse_error& e){
+    std::cerr << "Erro ao baixar gêneros." << std::endl;
+    continue;
+  }
+
+  return genres;
 
 }

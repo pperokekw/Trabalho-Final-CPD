@@ -7,5 +7,8 @@ void Film::print() const{
   std::cout << "ID: " << id << " | Popularidade: " << popularity << std::endl;
   std::cout << "Nota: " << std::fixed << std::setprecision(1) << rating << "/10.0" << std::endl;
   std::cout << "Sinopse: " << overview.substr(0,100) << "..." << std::endl;
+  for(const auto& genre : genres){
+    std::cout << "Gênero: " << genre << std::endl;
+  }
   std::cout << "------------------------------" << std::endl;
 }
