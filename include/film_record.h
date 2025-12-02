@@ -1,21 +1,27 @@
 #ifndef FILM_RECORD_H
-#define FILME_RECORD_H
+#define FILM_RECORD_H
 
-class FilmRecord{
-  public:
+#include <vector>
+#include <string>
+#include "films.h"
 
-    bool active;
-    int id;
-    double popularity;
-    double rating;
+class FilmRecord {
+public:
+    //Construtor para verificar e/ou criar pasta data
+    FilmRecord();
+    
+    //mostra a posição onde o filme foi alocado
+    long saveMovie(const Film& film);
 
-    char title[101];
-    char release_date[11];
+    // acesso direto
+    Film readMovieAt(long offset);
 
-    long offset_overview;
+private:
+    //le resumo
+    std::string readOverview(long offset, int size);
 
-  private:
-    void writeMovies(movieList);
-};
+    const std::string FILE_MOVIES = "data/movies.dat";
+    const std::string FILE_OVERVIEWS = "data/overviews.dat";
+}; 
 
 #endif
