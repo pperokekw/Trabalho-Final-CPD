@@ -28,8 +28,8 @@ std::vector<Film> ApiClient::getMovies(int pages) {
                 {"api_key", m_api_key},
                 {"language", "pt-BR"},
                 {"sort_by", "popularity.desc"},
-                {"page", std::to_string(page)}
-            }
+                {"page", std::to_string(page)}},
+            cpr::Timeout{10000}
         );
 
         if (r.status_code == 200) {
@@ -75,8 +75,8 @@ std::vector<Genre> ApiClient::getGenres() {
         cpr::Url{m_base_url + "/genre/movie/list"},
         cpr::Parameters{
             {"api_key", m_api_key},
-            {"language", "pt-BR"}
-        }
+            {"language", "pt-BR"}},
+        cpr::Timeout{10000}
     );
 
     if (r.status_code == 200) {

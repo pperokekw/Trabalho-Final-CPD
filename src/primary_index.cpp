@@ -11,6 +11,10 @@ long PrimaryIndex::getOffset(int id) {
     return -1;
 }
 
+const std::map<int, long>& PrimaryIndex::getIndex() const {
+    return index_map;
+}
+
 void PrimaryIndex::save() {
     std::ofstream file(FILENAME, std::ios::binary);
     size_t size = index_map.size();
@@ -26,8 +30,8 @@ void PrimaryIndex::load() {
     std::ifstream file(FILENAME, std::ios::binary);
     if (!file.is_open()) return;
 
-    size_t size;
-    file.read(reinterpret_cast<char*>(&size), sizeof(size));
+    size_t size = 0;
+    if (!file.read(reinterpret_cast<char*>(&size), sizeof(size))) return;
     
     for (size_t i = 0; i < size; i++) {
         int id;

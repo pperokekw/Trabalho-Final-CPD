@@ -54,8 +54,8 @@ void InvertedIndex::save() {
 void InvertedIndex::load() {
     std::ifstream file(filename_dict, std::ios::binary);
     if (!file.is_open()) return;
-    size_t size;
-    file.read(reinterpret_cast<char*>(&size), sizeof(size));
+    size_t size = 0;
+    if (!file.read(reinterpret_cast<char*>(&size), sizeof(size))) return;
     for (size_t i = 0; i < size; i++) {
         int key; long offset;
         file.read(reinterpret_cast<char*>(&key), sizeof(key));

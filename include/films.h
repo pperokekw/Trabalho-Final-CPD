@@ -13,7 +13,8 @@ struct MovieData {
     double popularity;
     double vote_average;
     long offset_overview;  
-    int overview_size;       
+    int overview_size;
+    int genres[5];       
 };
 
 class Film {

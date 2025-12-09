@@ -33,7 +33,7 @@ add_executable(
     src/api_client.cpp
     src/films.cpp
     src/genres.cpp
-    src/film_record.cpp
+    src/films_record.cpp
     src/primary_index.cpp
     src/inverted_index.cpp
     src/trie.cpp

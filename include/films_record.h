@@ -15,6 +15,7 @@ public:
 
     // acesso direto
     Film readMovieAt(long offset);
+    Film readMetadataAt(long offset);
 
 private:
     //le resumo

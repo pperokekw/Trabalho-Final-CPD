@@ -77,8 +77,8 @@ void Trie::save() {
 void Trie::load() {
     std::ifstream file(FILENAME, std::ios::binary);
     if (!file.is_open()) return;
-    size_t size;
-    file.read(reinterpret_cast<char*>(&size), sizeof(size));
+    size_t size = 0;
+    if (!file.read(reinterpret_cast<char*>(&size), sizeof(size))) return;
     nodes.resize(size);
     file.read(reinterpret_cast<char*>(nodes.data()), size * sizeof(TrieNode));
     std::cout << "Indice TRIE carregado.\n";

@@ -8,6 +8,7 @@ class PrimaryIndex {
 public:
     void add(int id, long offset);
     long getOffset(int id);
+    const std::map<int, long>& getIndex() const;
     void save();
     void load();
 
